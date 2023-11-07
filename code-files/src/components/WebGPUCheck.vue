@@ -15,7 +15,6 @@
     },
     mounted() {
         // Check if WebGPU is supported in Chrome.
-        console.log(navigator);
         this.webGPUSupported = 'gpu' in navigator;
     },
     async created() { // This may or may not be needed? It appears to work without so let's just pray 🙏🏻🙏🏻
