@@ -1,18 +1,19 @@
 <template>
-  <HelloWorld/>
-  <WebGPUCheck/>
+  <!-- <HelloWorld/>
+  <br /> -->
   <canvasComponent/>
+  <WebGPUCheck/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+//import HelloWorld from './components/HelloWorld.vue'
 import WebGPUCheck from './components/WebGPUCheck.vue'
 import canvasComponent from './components/canvasComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    //HelloWorld,
     WebGPUCheck,
     canvasComponent,
   }

@@ -20,7 +20,7 @@ export default {
       greeting: 'Hello, World!',
       username: '',
       counter: 0,
-      number_input: 0,
+      number_input: '',
     };
   },
 

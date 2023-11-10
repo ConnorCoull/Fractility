@@ -1,12 +1,11 @@
 use wasm_bindgen::prelude::*;
 use web_sys::{CanvasRenderingContext2d, HtmlCanvasElement};
 
-// create a struct that can be used by wasm
-#[wasm_bindgen]
-pub struct Point {
-    x: f64,
-    y: f64
-}
+// #[wasm_bindgen]
+// pub struct Point {
+//     x: f64,
+//     y: f64
+// }
 
 #[wasm_bindgen]
 pub fn greet(name: String) -> String {
@@ -26,7 +25,7 @@ pub fn add(a: i32, b: String) -> i32 {
 }
 
 #[wasm_bindgen]
-pub fn draw_dot(canvas: HtmlCanvasElement, x: f64, y: f64) {
+pub fn draw_dot(canvas: &HtmlCanvasElement, x: f64, y: f64) {
     let context = canvas
         .get_context("2d")
         .unwrap()
@@ -40,16 +39,63 @@ pub fn draw_dot(canvas: HtmlCanvasElement, x: f64, y: f64) {
 }
 
 #[wasm_bindgen]
-pub fn calculate_next_point(start_point: Point, length: u32, angle: f64) -> Point {
-    let angle_in_radians = angle * std::f64::consts::PI / 180.0;
-    Point {
-        x: start_point.x + f64::from(length) * angle_in_radians.cos(),
-        y: start_point.y + f64::from(length) * angle_in_radians.sin()
+pub fn draw_fractal(x: f64, y: f64, length: f64, angle: f64, length_scalar: f64, iterations: u32, canvas: &HtmlCanvasElement) {
+    if iterations == 0 {
+        return;
     }
+
+    let angle_radians = angle * std::f64::consts::PI / 180.00;
+
+    let x2 = x + (length * length_scalar) * angle_radians.cos();
+    let y2 = y + (length * length_scalar) * angle_radians.sin();
+
+    draw_line(&canvas, x, y, x2, y2);
+
+    draw_fractal(x2, y2, length * length_scalar, -angle, length_scalar, iterations - 1, &canvas);
+    draw_fractal(x2, y2, length * length_scalar, angle, length_scalar, iterations - 1, &canvas);
+}
+
+#[wasm_bindgen]
+pub fn draw_line(canvas: &HtmlCanvasElement, x: f64, y: f64, x2: f64, y2: f64) {
+    // Convert the inputs to coordinates for the line
+    // Then use WebGPU to draw the line on the canvas
+    let context = canvas
+        .get_context("2d")
+        .unwrap()
+        .unwrap()
+        .dyn_into::<web_sys::CanvasRenderingContext2d>()
+        .unwrap();
+
+    context.begin_path();
+    context.move_to(x, y);
+    context.line_to(x2, y2);
+    context.stroke();
+}
+
+#[wasm_bindgen]
+pub fn draw_line_given_one_point(canvas: &HtmlCanvasElement, x: f64, y: f64, angle: f64, length: f64) {
+    let angle_radians = angle * std::f64::consts::PI / 180.00;
+
+    let x2 = x + length * angle_radians.cos();
+    let y2 = y + length * angle_radians.sin();
+
+    draw_line(&canvas, x, y, x2, y2);
+}
+
+#[wasm_bindgen]
+pub fn get_lower_angle_canvas(angle: f64) -> f64 {
+    270.00-angle/2.0
+}
+
+#[wasm_bindgen]
+pub fn get_upper_angle_canvas(angle: f64) -> f64 {
+    270.00+angle/2.0
 }
 
 // #[wasm_bindgen]
-// pub fn drawLine(canvas: HtmlCanvasElement, input1: &str, input2: &str) {
-//   // Convert the inputs to coordinates for the line
-//   // Then use WebGPU to draw the line on the canvas
+// pub fn get_bottom_center(canvas: &HtmlCanvasElement) -> (f64, f64) {
+//     let width = canvas.width() as f64;
+//     let height = canvas.height() as f64;
+
+//     (width / 2.0, height)
 // }
