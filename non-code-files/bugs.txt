@@ -1,0 +1,7 @@
+Bug - Interdependancy between VUE components 
+Solution - forgot to import init() from wasm file, hence crashing without helloworld.
+
+Bug - Fractals generate weirdly
+Solution - JavaScript was subtracting as ints, but adding as strings
+
+Bug - the coords system isn't like what i need

@@ -51,8 +51,8 @@ pub fn draw_fractal(x: f64, y: f64, length: f64, angle: f64, length_scalar: f64,
 
     draw_line(&canvas, x, y, x2, y2);
 
-    draw_fractal(x2, y2, length * length_scalar, -angle, length_scalar, iterations - 1, &canvas);
-    draw_fractal(x2, y2, length * length_scalar, angle, length_scalar, iterations - 1, &canvas);
+    draw_fractal(x2, y2, length * length_scalar, -angle*0.9, length_scalar, iterations - 1, &canvas);
+    draw_fractal(x2, y2, length * length_scalar, angle*0.9, length_scalar, iterations - 1, &canvas);
 }
 
 #[wasm_bindgen]
@@ -69,6 +69,8 @@ pub fn draw_line(canvas: &HtmlCanvasElement, x: f64, y: f64, x2: f64, y2: f64) {
     context.begin_path();
     context.move_to(x, y);
     context.line_to(x2, y2);
+    context.set_line_width(1);
+    context.set_line_cap("round");
     context.stroke();
 }
 

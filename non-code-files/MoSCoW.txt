@@ -1,0 +1,16 @@
+MUST HAVE
+A page to check if WebGPU is supported, that doesn't allow access to main page if it is not.
+A main page, that has the canvas element
+The Rust code, that compiles into WASM that enables the generation of fractals
+
+SHOULD HAVE
+A way to have multiple fractals, or the ability to create your own fractals
+A user-friendly design with a menu to change the factal appearence
+
+COULD HAVE
+An info page just explaining the technologies
+
+WOULD BE NICE TO HAVE
+3D fractals
+
+WON'T HAVE
