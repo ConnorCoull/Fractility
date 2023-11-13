@@ -14,7 +14,7 @@
             <input type="range" v-model="length_scalar" min="0" max="2" step="0.01" />
             <p id="length_scalar"></p>
             <h3>Thickness:</h3>
-            <input type="range" v-model="thickness" min="1" max="20" />
+            <input type="range" v-model="thickness" min="1" max="20" step="0.1" />
             <p id="thickness"></p>
             <h3>Angle Scalar:</h3>
             <input type="range" v-model="angle_scalar" min="0" max="2" step="0.01" />
@@ -39,7 +39,7 @@
                 length: 750,
                 length_scalar: 0.49, //change to 50 to recreate bug on Friday, add the /100 too
                 angle_scalar: 0.99,
-                thickness: 4,
+                thickness: 4.5,
                 thickness_scalar: 0.75,
             };
         },

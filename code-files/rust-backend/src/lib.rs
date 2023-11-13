@@ -1,29 +1,6 @@
 use wasm_bindgen::prelude::*;
 use web_sys::{CanvasRenderingContext2d, HtmlCanvasElement};
 
-// #[wasm_bindgen]
-// pub struct Point {
-//     x: f64,
-//     y: f64
-// }
-
-#[wasm_bindgen]
-pub fn greet(name: String) -> String {
-    // match case on lower case name
-    match name.to_lowercase().as_str(){
-        "" => "Hello, World!".to_string(),
-        _ => format!("Hello, {}!", name)
-    }
-}
-
-#[wasm_bindgen]
-pub fn add(a: i32, b: String) -> i32 {
-    match b.to_lowercase().as_str(){
-        "" => a,
-        _ => a + b.parse::<i32>().unwrap_or(0)
-    }
-}
-
 #[wasm_bindgen]
 pub fn draw_dot(canvas: &HtmlCanvasElement, x: f64, y: f64) {
     let context = canvas
@@ -83,21 +60,3 @@ pub fn draw_line_given_one_point(canvas: &HtmlCanvasElement, x: f64, y: f64, ang
 
     draw_line(&canvas, x, y, x2, y2, 1.0);
 }
-
-#[wasm_bindgen]
-pub fn get_lower_angle_canvas(angle: f64) -> f64 {
-    270.00-angle/2.0
-}
-
-#[wasm_bindgen]
-pub fn get_upper_angle_canvas(angle: f64) -> f64 {
-    270.00+angle/2.0
-}
-
-// #[wasm_bindgen]
-// pub fn get_bottom_center(canvas: &HtmlCanvasElement) -> (f64, f64) {
-//     let width = canvas.width() as f64;
-//     let height = canvas.height() as f64;
-
-//     (width / 2.0, height)
-// }
