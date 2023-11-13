@@ -39,7 +39,7 @@ pub fn draw_dot(canvas: &HtmlCanvasElement, x: f64, y: f64) {
 }
 
 #[wasm_bindgen]
-pub fn draw_fractal(x: f64, y: f64, length: f64, angle: f64, length_scalar: f64, iterations: u32, canvas: &HtmlCanvasElement) {
+pub fn draw_fractal(x: f64, y: f64, length: f64, length_scalar: f64, angle: f64, angle_scalar: f64, iterations: u32, canvas: &HtmlCanvasElement, thickness: f64, thickness_scalar: f64) {
     if iterations == 0 {
         return;
     }
@@ -49,14 +49,14 @@ pub fn draw_fractal(x: f64, y: f64, length: f64, angle: f64, length_scalar: f64,
     let x2 = x + (length * length_scalar) * angle_radians.cos();
     let y2 = y + (length * length_scalar) * angle_radians.sin();
 
-    draw_line(&canvas, x, y, x2, y2);
+    draw_line(&canvas, x, y, x2, y2, thickness);
 
-    draw_fractal(x2, y2, length * length_scalar, -angle*0.9, length_scalar, iterations - 1, &canvas);
-    draw_fractal(x2, y2, length * length_scalar, angle*0.9, length_scalar, iterations - 1, &canvas);
+    draw_fractal(x2, y2, length * length_scalar, length_scalar, -angle*angle_scalar, angle_scalar, iterations - 1, &canvas, thickness*thickness_scalar, thickness_scalar);
+    draw_fractal(x2, y2, length * length_scalar, length_scalar, angle*angle_scalar, angle_scalar, iterations - 1, &canvas, thickness*thickness_scalar, thickness_scalar);
 }
 
 #[wasm_bindgen]
-pub fn draw_line(canvas: &HtmlCanvasElement, x: f64, y: f64, x2: f64, y2: f64) {
+pub fn draw_line(canvas: &HtmlCanvasElement, x: f64, y: f64, x2: f64, y2: f64, thickness: f64) {
     // Convert the inputs to coordinates for the line
     // Then use WebGPU to draw the line on the canvas
     let context = canvas
@@ -69,7 +69,7 @@ pub fn draw_line(canvas: &HtmlCanvasElement, x: f64, y: f64, x2: f64, y2: f64) {
     context.begin_path();
     context.move_to(x, y);
     context.line_to(x2, y2);
-    context.set_line_width(1);
+    context.set_line_width(thickness);
     context.set_line_cap("round");
     context.stroke();
 }
@@ -81,7 +81,7 @@ pub fn draw_line_given_one_point(canvas: &HtmlCanvasElement, x: f64, y: f64, ang
     let x2 = x + length * angle_radians.cos();
     let y2 = y + length * angle_radians.sin();
 
-    draw_line(&canvas, x, y, x2, y2);
+    draw_line(&canvas, x, y, x2, y2, 1.0);
 }
 
 #[wasm_bindgen]

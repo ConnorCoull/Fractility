@@ -4,4 +4,8 @@ Solution - forgot to import init() from wasm file, hence crashing without hellow
 Bug - Fractals generate weirdly
 Solution - JavaScript was subtracting as ints, but adding as strings
 
+Bug - The length scalar is incorrect
+Solution - switched it to range from 0-2 and have 0.1 steps. Originally I had it range 0-200 and divided it by 100,
+the switch to 0-2 but still being divided by 100 and starting at 50 caused the bug.
+
 Bug - the coords system isn't like what i need
