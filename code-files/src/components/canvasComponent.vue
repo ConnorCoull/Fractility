@@ -37,7 +37,7 @@
                 angle: 45,
                 iterations: 10,
                 length: 750,
-                length_scalar: 0.5, //change to 50 to recreate bug on Friday, add the /100 too
+                length_scalar: 0.49, //change to 50 to recreate bug on Friday, add the /100 too
                 angle_scalar: 0.99,
                 thickness: 4,
                 thickness_scalar: 0.75,
@@ -159,7 +159,7 @@
         padding: none;
     }
     canvas {
-        border: 1px solid black;
+        border-left: 1px solid black;
     }
     .container {
         display: flex;
