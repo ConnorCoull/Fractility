@@ -1,27 +1,69 @@
 <template>
     <div class="container">
         <div class="controls-container">
-            <h3>Iterations:</h3>
-            <input type="range" v-model="iterations" min="0" max="15" />
-            <p id="iterations"></p>
-            <h3>Angle:</h3>
-            <input type="range" v-model="angle" min="0" max="180" />
-            <p id="angle"></p>
-            <h3>Length:</h3>
-            <input type="range" v-model="length" min="1" max="1000" />
-            <p id="length"></p>
-            <h3>Length Scalar:</h3>
-            <input type="range" v-model="length_scalar" min="0" max="2" step="0.01" />
-            <p id="length_scalar"></p>
-            <h3>Thickness:</h3>
-            <input type="range" v-model="thickness" min="1" max="20" step="0.1" />
-            <p id="thickness"></p>
-            <h3>Angle Scalar:</h3>
-            <input type="range" v-model="angle_scalar" min="0" max="2" step="0.01" />
-            <p id="angle_scalar"></p>
-            <h3>Thickness Scalar:</h3>
-            <input type="range" v-model="thickness_scalar" min="0" max="2" step="0.01" />
-            <p id="thickness_scalar"></p>
+            <div class="info-header-container">
+                <div class="row">
+                    <h3 class="var-title">Iterations:</h3>
+                    <p id="iterations" class="var-content"></p>
+                </div>
+                <div>
+                    <input type="range" v-model="iterations" min="0" max="15" />
+                </div>
+            </div>
+            <div class="info-header-container">
+                <div class="row">
+                    <h3 class="var-title">Angle:</h3>
+                    <p id="angle" class="var-content"></p>
+                </div>
+                <div>
+                    <input type="range" v-model="angle" min="0" max="360" />
+                </div>
+            </div>
+            <div class="info-header-container">
+                <div class="row">
+                    <h3 class="var-title">Length:</h3>
+                    <p id="length" class="var-content"></p>
+                </div>
+                <div>
+                    <input type="range" v-model="length" min="0" max="1000" />
+                </div>
+            </div>
+            <div class="info-header-container">
+                <div class="row">
+                    <h3 class="var-title">Length Scalar:</h3>
+                    <p id="length_scalar" class="var-content"></p>
+                </div>
+                <div>
+                    <input type="range" v-model="length_scalar" min="0" max="2" step="0.1" />
+                </div>
+            </div>
+            <div class="info-header-container">
+                <div class="row">
+                    <h3 class="var-title">Thickness:</h3>
+                    <p id="thickness" class="var-content"></p>
+                </div>
+                <div>
+                    <input type="range" v-model="thickness" min="0" max="100" />
+                </div>
+            </div>
+            <div class="info-header-container">
+                <div class="row">
+                    <h3 class="var-title">Angle Scalar:</h3>
+                    <p id="angle_scalar" class="var-content"></p>
+                </div>
+                <div>
+                    <input type="range" v-model="angle_scalar" min="0" max="2" step="0.1"/>
+                </div>
+            </div>
+            <div class="info-header-container">
+                <div class="row">
+                    <h3 class="var-title">Thickness Scalar:</h3>
+                    <p id="thickness_scalar" class="var-content"></p>
+                </div>
+                <div>
+                    <input type="range" v-model="thickness_scalar" min="0" max="2" step="0.1" />
+                </div>
+            </div>
         </div>
         <div class="canvas-container">
             <canvas ref="canvas"></canvas>
@@ -34,11 +76,13 @@
     export default {
         data() {
             return {
-                angle: 45,
                 iterations: 10,
                 length: 750,
                 length_scalar: 0.49, //change to 50 to recreate bug on Friday, add the /100 too
+                length_: 0,
+                angle: 45,
                 angle_scalar: 0.99,
+                angle_constant: 0,
                 thickness: 4.5,
                 thickness_scalar: 0.75,
             };
@@ -55,6 +99,7 @@
             // },
             drawFractal() {
                 const canvas = this.$refs.canvas;
+                //move this into a rust function that supports multiple arms
                 draw_fractal(10, 0, this.length, this.length_scalar, this.angle, this.angle_scalar, this.iterations, canvas, this.thickness, this.thickness_scalar);
                 draw_fractal(10, 0, this.length, this.length_scalar, -this.angle, this.angle_scalar, this.iterations, canvas, this.thickness, this.thickness_scalar);
             },
@@ -72,7 +117,7 @@
             const context = canvas.getContext('2d');
 
             context.canvas.width = window.innerWidth * 0.8;
-            context.canvas.height = window.innerHeight * 0.97; // this doesn't feel great but not sure what alternative look like
+            context.canvas.height = window.innerHeight * 0.975; // this doesn't feel great but not sure what alternative look like
 
             context.translate(canvas.width / 2, canvas.height);
             context.rotate(-Math.PI / 2);
@@ -149,5 +194,16 @@
     }
     .controls-container {
         flex: 20%;
+    }
+    .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .var-title{
+        flex: 50%;
+    }
+    .var-content{
+        flex: 50%;
     }
 </style>
