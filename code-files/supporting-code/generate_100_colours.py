@@ -9,6 +9,6 @@ rgb_values = [cmap(value)[:3] for value in values]
 
 rgb_values_255 = [(int(r*255), int(g*255), int(b*255)) for r, g, b in rgb_values]
 
-with open('rgb_values.txt', 'w') as f:
+with open('rainbow_100.txt', 'w') as f:
     for rgb in rgb_values_255:
         f.write(str(rgb) + '\n')

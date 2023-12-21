@@ -34,7 +34,7 @@
                     <p id="length_scalar" class="var-content"></p>
                 </div>
                 <div>
-                    <input type="range" v-model="length_scalar" min="0" max="2" step="0.1" />
+                    <input type="range" v-model="length_scalar" min="0" max="2" step="0.01" />
                 </div>
             </div>
             <div class="info-header-container">
@@ -52,7 +52,7 @@
                     <p id="angle_scalar" class="var-content"></p>
                 </div>
                 <div>
-                    <input type="range" v-model="angle_scalar" min="0" max="2" step="0.1"/>
+                    <input type="range" v-model="angle_scalar" min="0" max="2" step="0.01"/>
                 </div>
             </div>
             <div class="info-header-container">
@@ -61,9 +61,10 @@
                     <p id="thickness_scalar" class="var-content"></p>
                 </div>
                 <div>
-                    <input type="range" v-model="thickness_scalar" min="0" max="2" step="0.1" />
+                    <input type="range" v-model="thickness_scalar" min="0" max="2" step="0.01" />
                 </div>
             </div>
+            <WebGPUCheck />
         </div>
         <div class="canvas-container">
             <canvas ref="canvas"></canvas>
@@ -72,8 +73,10 @@
 </template>
 <script>
     import init, { /*draw_dot,*/ draw_fractal, clear /*,draw_line_given_one_point*/ } from '../../public/pkg/rust_backend.js';
+    import WebGPUCheck from './WebGPUCheck.vue';
 
     export default {
+  components: { WebGPUCheck },
         data() {
             return {
                 iterations: 10,
