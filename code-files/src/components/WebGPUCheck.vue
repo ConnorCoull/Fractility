@@ -1,11 +1,11 @@
 <template>
-    <div>
-      <p v-if="webGPUSupported">WebGPU is supported!</p>
-      <p v-else>WebGPU may not be supported, the content may not work as anticipated.</p>
-    </div>
-  </template>
+  <div class="WebGPUCheckPara">
+    <p  v-if="webGPUSupported">WebGPU is supported!</p>
+    <p v-else>WebGPU may not be supported, the content may not work as anticipated.</p>
+  </div>
+</template>
   
-  <script>
+<script>
   export default {
     name: 'WebGPUSupport',
     data() {
@@ -23,5 +23,13 @@
       this.isWebGPUSupported = !!device;
     },
   };
-  </script>
+</script>
+
+<style scoped>
+.WebGPUCheckPara {
+  font-family: 'Open Sans', sans-serif;
+  color: #f4f4f4;
+  text-align: center;
+}
+</style>
   

@@ -3,13 +3,13 @@
         <div class="controls-container">
             <h1>Options</h1>
             <ControlsContainer name="Iterations" :value="iterations" :min="0" :max="15" @updateValue="updateEmittedValue" />
-            <ControlsContainer name="Angle" :value="angle" :min="0" :max="360" @updateValue="updateEmittedValue" />
+            <ControlsContainer name="Angle 1" :value="angle_1" :min="0" :max="360" @updateValue="updateEmittedValue" />
+            <ControlsContainer name="Angle 2" :value="angle_2" :min="0" :max="360" @updateValue="updateEmittedValue" />
+            <ControlsContainer name="Branches" :value="branches" :min="0" :max="10" @updateValue="updateEmittedValue" />
             <ControlsContainer name="Length" :value="length" :min="0" :max="1000" @updateValue="updateEmittedValue" />
             <ControlsContainer name="Length Scalar" :value="length_scalar" :min="0" :max="2" :step="0.01" @updateValue="updateEmittedValue" />
-            <ControlsContainer name="Thickness" :value="thickness" :min="0" :max="100" @updateValue="updateEmittedValue" />
-            <ControlsContainer name="Angle Scalar" :value="angle_scalar" :min="0" :max="2" :step="0.01" @updateValue="updateEmittedValue" />
-            <ControlsContainer name="Thickness Scalar" :value="thickness_scalar" :min="0" :max="2" :step="0.01" @updateValue="updateEmittedValue" />
-            <br />
+            <ControlsContainer name="Width" :value="width" :min="0" :max="100" @updateValue="updateEmittedValue" />
+            <ControlsContainer name="Width Scalar" :value="width_scalar" :min="0" :max="2" :step="0.01" @updateValue="updateEmittedValue" />
             <WebGPUCheck />
         </div>
         <div class="canvas-container">
@@ -18,7 +18,7 @@
     </div>
 </template>
 <script>
-import init, { draw_fractal, clear, to_lower_case, to_float } from '../../public/pkg/rust_backend.js';
+import init, { draw_alternate_fractal, clear, to_lower_case, to_float, get_canvas_height_up } from '../../public/pkg/rust_backend.js';
 import ControlsContainer from './ControlsContainer.vue';
 import WebGPUCheck from './WebGPUCheck.vue';
 
@@ -26,14 +26,14 @@ export default {
     components: { WebGPUCheck, ControlsContainer },
     data() {
         return {
-            iterations: 10,
-            length: 750,
-            length_scalar: 0.49, //change to 50 to recreate bug on Friday, add the /100 too
-            angle: 45,
-            angle_scalar: 0.99,
-            angle_constant: 0,
-            thickness: 20,
-            thickness_scalar: 0.75,
+            angle_1: 0,
+            angle_2: 120,
+            iterations: 5,
+            branches: 3,
+            length: 250,
+            length_scalar: 0.5,
+            width: 4.5,
+            width_scalar: 0.75,
             start_color: "#DE493E",
         };
     },
@@ -41,8 +41,8 @@ export default {
         drawFractal() {
             const canvas = this.$refs.canvas;
             clear(canvas);
-            draw_fractal(10, 0, this.length, this.length_scalar, this.angle, this.angle_scalar, this.iterations, canvas, this.thickness, this.thickness_scalar, this.start_color);
-            draw_fractal(10, 0, this.length, this.length_scalar, -this.angle, this.angle_scalar, this.iterations, canvas, this.thickness, this.thickness_scalar, this.start_color);
+            console.log(`canvas width: ${canvas.width}, canvas height: ${canvas.height}`);
+            draw_alternate_fractal(get_canvas_height_up(canvas, 0.3), 0, this.angle_1, this.angle_2, this.iterations, this.branches, this.length, this.length_scalar, this.width, this.width_scalar, canvas, this.start_color);
         },
         update(element, value) {
             element.innerHTML = value;
