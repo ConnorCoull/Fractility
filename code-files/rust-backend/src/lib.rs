@@ -21,7 +21,7 @@ use web_sys::{CanvasRenderingContext2d, HtmlCanvasElement};
 // }
 
 #[wasm_bindgen]
-pub fn draw_alternate_fractal(x: f32, y: f32, angle1: f32, angle2: f32, iterations: u16, branches: u16, start_length: f32, length_multiplier: f32, start_width: f32, width_multiplier: f32, canvas: &HtmlCanvasElement, color: &str) {
+pub fn draw_alternate_fractal(x: f32, y: f32, angle1: f32, angle2: f32, iterations: u8, branches: u8, start_length: f32, length_multiplier: f32, start_width: f32, width_multiplier: f32, canvas: &HtmlCanvasElement, color: &str) {
     if iterations == 0 {
         return;
     }
@@ -51,13 +51,10 @@ pub fn draw_alternate_fractal(x: f32, y: f32, angle1: f32, angle2: f32, iteratio
 pub fn draw_line(canvas: &HtmlCanvasElement, x: f32, y: f32, x2: f32, y2: f32, thickness: f32, color: &str) {
     let context = get_canvas_context(&canvas);
 
-    // Change transparency
-    context.set_global_alpha(0.2);
-
     context.begin_path();
-    context.move_to(x, y);
-    context.line_to(x2, y2);
-    context.set_line_width(thickness);
+    context.move_to(x as f64, y as f64);
+    context.line_to(x2 as f64, y2 as f64);
+    context.set_line_width(thickness as f64);
     context.set_line_cap("round");
     context.set_stroke_style(&JsValue::from_str(color));
     context.stroke();
@@ -67,8 +64,8 @@ pub fn draw_line(canvas: &HtmlCanvasElement, x: f32, y: f32, x2: f32, y2: f32, t
 pub fn clear(canvas: &HtmlCanvasElement) {
     let context = get_canvas_context(&canvas);
 
-    let width = canvas.width() as f32;
-    let height = canvas.height() as f32;
+    let width = canvas.width() as f64;
+    let height = canvas.height() as f64;
     context.clear_rect(0.0, 0.0, width, height);
     context.clear_rect(0.0, 0.0, -width, -height);
     context.clear_rect(0.0, 0.0, -width, height);
