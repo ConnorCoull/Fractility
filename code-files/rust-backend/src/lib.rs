@@ -28,13 +28,6 @@ pub fn draw_alternate_fractal(x: f64, y: f64, angle1: f64, angle2: f64, iteratio
     
     let mut endpoints: Vec<(f64, f64)> = Vec::new();
 
-    let angle1_radians = angle1 * std::f64::consts::PI / 180.00;
-
-    let x2 = x + start_length * angle1_radians.cos();
-    let y2 = y + start_length * angle1_radians.sin();
-
-    draw_line(&canvas, x, y, x2, y2, start_width, color);
-
     for i in 0..branches {
         let angle = (angle1 + angle2 * i as f64) % 360.00;
         let angle_radians = angle * std::f64::consts::PI / 180.00;
@@ -111,3 +104,9 @@ pub fn get_next_color(color: &str) -> String {
 pub fn get_canvas_height_up(canvas: &HtmlCanvasElement, percent: f64) -> f64 {
     canvas.height() as f64 * percent
 }
+
+// #[wasm_bindgen]
+// pub fn download_canvas(canvas: HtmlCanvasElement) {
+//     // This is complex
+
+// }

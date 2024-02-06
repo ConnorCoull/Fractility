@@ -11,7 +11,6 @@
             <ControlsContainer name="Width" :value="width" :min="0" :max="100" @updateValue="updateEmittedValue" />
             <ControlsContainer name="Width Scalar" :value="width_scalar" :min="0" :max="2" :step="0.01" @updateValue="updateEmittedValue" />
             <button class="download-button" @click="downloadCanvas">Download</button>
-            <!-- <WebGPUCheck /> -->
         </div>
         <div class="canvas-container">
             <canvas ref="canvas"></canvas>
@@ -19,7 +18,6 @@
     </div>
 </template>
 <script>
-import init, { draw_alternate_fractal, clear, to_lower_case, to_float, get_canvas_height_up } from '../../public/pkg/rust_backend.js';
 import ControlsContainer from './ControlsContainer.vue';
 
 export default {
@@ -38,19 +36,78 @@ export default {
         };
     },
     methods: {
-        drawFractal() {
-            const canvas = this.$refs.canvas;
-            clear(canvas);
-            console.log(`canvas width: ${canvas.width}, canvas height: ${canvas.height}`);
-            draw_alternate_fractal(get_canvas_height_up(canvas, 0.3), 0, this.angle_1, this.angle_2, this.iterations, this.branches, this.length, this.length_scalar, this.width, this.width_scalar, canvas, this.start_color);
+        draw_alternate_fractal(x, y, angle_1, angle_2, iterations, branches, length, length_scalar, width, width_scalar, canvas, color) {
+            if (iterations === 0) {
+                return;
+            }
+            let endpoints = [];
+
+            for (let i = 0; i < branches; i++) {
+                let angle = (angle_1 + (angle_2 * i)) % 360;
+                let angle_radians = angle * Math.PI / 180;
+
+                let x2 = x + length * Math.cos(angle_radians);
+                let y2 = y + length * Math.sin(angle_radians);
+
+                this.draw_line(canvas, x, y, x2, y2, width, color);
+
+                endpoints.push([x2, y2]);
+            }
+
+            for (let i = 0; i < endpoints.length; i++) {
+                // Remember to move this back to dereferencing
+                const new_coords = endpoints[i];
+                this.draw_alternate_fractal(new_coords[0], new_coords[1], angle_1, angle_2, iterations - 1, branches, (length * length_scalar), length_scalar, (width * width_scalar), width_scalar, canvas, this.get_next_color(color));
+            }
+        },
+        draw_line(canvas, x, y, x2, y2, thickness, color) { 
+            if (canvas) {
+                canvas = this.$refs.canvas;
+            }
+            const context = this.$refs.canvas.getContext('2d');
+
+            context.beginPath();
+            context.moveTo(x, y);
+            context.lineTo(x2, y2);
+            context.lineWidth = thickness;
+            context.lineCap = "round";
+            context.strokeStyle = color;
+            context.stroke();
+        },
+        clear(canvas) {
+            let context = canvas.getContext('2d');
+            let width = canvas.width;
+            let height = canvas.height;
+
+            context.clearRect(0.0, 0.0, width, height);
+            context.clearRect(0.0, 0.0, -width, -height);
+            context.clearRect(0.0, 0.0, -width, height);
+            context.clearRect(0.0, 0.0, width, -height);
         },
         update(element, value) {
             element.innerHTML = value;
         },
-        updateEmittedValue(name, value) { 
-            name = to_lower_case(name);
-            this[name] = to_float(value); //doesn't update?
-            this.drawFractal();
+        updateEmittedValue(name, value) {
+            const canvas = this.$refs.canvas; 
+            name = this.to_lower_case(name);
+            this[name] = this.to_float(value); //doesn't update?
+            this.clear(canvas);
+            this.draw_alternate_fractal(this.get_canvas_height_up(canvas, 0.3), 0, this.angle_1, this.angle_2, this.iterations, this.branches, this.length, this.length_scalar, this.width, this.width_scalar, canvas, this.start_color);
+        },
+        to_lower_case(string) {
+            return string.toLowerCase().replace(/ /g, "_");
+        },
+        to_float(string) {
+            return parseFloat(string);
+        },
+        get_next_color(color) {
+            const colors = ["#DE493E", "#F7A13E", "#F7E13E", "#A1F73E", "#3EF7C8", "#3E9BF7", "#A13EF7", "#F73EF7", "#F73E9B", "#F73E3E"];
+            const index = colors.indexOf(color);
+            const next_index = (index + 1) % colors.length;
+            return colors[next_index];
+        },
+        get_canvas_height_up(canvas, percent) {
+            return canvas.height * percent;
         },
         downloadCanvas() {
             const canvas = this.$refs.canvas;
@@ -60,8 +117,7 @@ export default {
             link.click();
         },
     },
-    async mounted() {
-        await init();
+    mounted() {
         const canvas = this.$refs.canvas;
         const context = canvas.getContext('2d');
 
@@ -71,11 +127,12 @@ export default {
         context.translate(canvas.width / 2, canvas.height);
         context.rotate(-Math.PI / 2);
 
-        this.drawFractal();
+        console.log(this.start_color);
+
+        this.draw_alternate_fractal(this.get_canvas_height_up(canvas, 0.3), 0, this.angle_1, this.angle_2, this.iterations, this.branches, this.length, this.length_scalar, this.width, this.width_scalar, canvas, this.start_color);
     },
 };
 </script>
-
 <style scoped>
     .h1 {
         color: #ffd700;
@@ -111,7 +168,6 @@ export default {
         color: #f4f4f4;
         background: #333333;
         flex: 20%;
-        padding-bottom: 2vh;
     }
 
     .controls-container h1 {
@@ -134,5 +190,4 @@ export default {
         color: #333333;
         background-color: #ffd700;
     }
-
 </style>
