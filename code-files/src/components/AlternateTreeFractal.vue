@@ -41,8 +41,26 @@ export default {
         drawFractal() {
             const canvas = this.$refs.canvas;
             clear(canvas);
-            console.log(`canvas width: ${canvas.width}, canvas height: ${canvas.height}`);
-            draw_alternate_fractal(get_canvas_height_up(canvas, 0.3), 0, this.angle_1, this.angle_2, this.iterations, this.branches, this.length, this.length_scalar, this.width, this.width_scalar, canvas, this.start_color);
+            const startTime = performance.now();
+
+            draw_alternate_fractal(
+                get_canvas_height_up(canvas, 0.35),
+                0,
+                this.angle_1,
+                this.angle_2,
+                this.iterations,
+                this.branches,
+                this.length,
+                this.length_scalar,
+                this.width,
+                this.width_scalar,
+                canvas,
+                this.start_color
+            );
+
+            const endTime = performance.now();
+            const elapsedTime = endTime - startTime;
+            console.log(`Fractal rendered in ${elapsedTime} ms`);
         },
         update(element, value) {
             element.innerHTML = value;
