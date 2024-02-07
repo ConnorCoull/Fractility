@@ -1,25 +1,14 @@
 <template>
-  <!-- <HelloWorld/> -->
-  <!-- <canvasComponent/> -->
-  <!-- <WebGPUCheck/> -->
-  <AlternateTreeFractal />
+  <FractalComponent />
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
-// import WebGPUCheck from './components/WebGPUCheck.vue'
-// import canvasComponent from './components/canvasComponent.vue'
-import AlternateTreeFractal from './components/AlternateTreeFractal.vue'
-//import AlternateTreeFractalJS from './components/AlternateTreeFractalJS.vue';
+import FractalComponent from './components/FractalComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    //HelloWorld,
-    // WebGPUCheck,
-    // canvasComponent,
-    AlternateTreeFractal,
-    //AlternateTreeFractalJS,
+    FractalComponent,
   }
 }
 </script>
