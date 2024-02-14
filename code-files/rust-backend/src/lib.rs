@@ -1,47 +1,29 @@
 use wasm_bindgen::prelude::*;
 use web_sys::{CanvasRenderingContext2d, HtmlCanvasElement};
 
-// #[wasm_bindgen]
-// pub fn draw_fractal(x: f32, y: f32, length: f32, length_scalar: f32, angle: f32, angle_scalar: f32, iterations: u16, canvas: &HtmlCanvasElement, thickness: f32, thickness_scalar: f32, color: &str) {
-//     if iterations == 0 {
-//         return;
-//     }
-
-//     let angle_radians = angle * std::f32::consts::PI / 180.00;
-
-//     let x2 = x + (length * length_scalar) * angle_radians.cos();
-//     let y2 = y + (length * length_scalar) * angle_radians.sin();
-
-//     draw_line(&canvas, x, y, x2, y2, thickness, color);
-
-//     let next_color = get_next_color(color);
-
-//     draw_fractal(x2, y2, length * length_scalar, length_scalar, -angle*angle_scalar % 360.00, angle_scalar, iterations - 1, &canvas, thickness*thickness_scalar, thickness_scalar, &next_color);
-//     draw_fractal(x2, y2, length * length_scalar, length_scalar, angle*angle_scalar % 360.00, angle_scalar, iterations - 1, &canvas, thickness*thickness_scalar, thickness_scalar, &next_color);
-// }
-
 #[wasm_bindgen]
 pub fn draw_alternate_fractal(x: f32, y: f32, angle1: f32, angle2: f32, iterations: u8, branches: u8, start_length: f32, length_multiplier: f32, start_width: f32, width_multiplier: f32, canvas: &HtmlCanvasElement, color: &str) {
     if iterations == 0 {
         return;
     }
     
-    let mut endpoints: Vec<(f32, f32)> = Vec::new();
+    let mut endpoints: Vec<(f32, f32)> = Vec::with_capacity(branches as usize);
+
+    let angle1_radians = angle1 * std::f32::consts::PI / 180.00;
+    let angle2_radians = angle2 * std::f32::consts::PI / 180.00;
 
     for i in 0..branches {
-        let angle = (angle1 + angle2 * i as f32) % 360.00;
-        let angle_radians = angle * std::f32::consts::PI / 180.00;
+        let angle = angle1_radians + (angle2_radians * i as f32);
 
-        let x2 = x + start_length * angle_radians.cos();
-        let y2 = y + start_length * angle_radians.sin();
+        let x2 = x + start_length * angle.cos();
+        let y2 = y + start_length * angle.sin();
 
         draw_line(&canvas, x, y, x2, y2, start_width, color);
 
         endpoints.push((x2, y2));
     }
 
-    for i in 0..endpoints.len() {
-        let (x, y) = endpoints[i];
+    for &(x, y) in &endpoints {
         draw_alternate_fractal(x, y, angle1, angle2, iterations - 1, branches, start_length * length_multiplier, length_multiplier, start_width * width_multiplier, width_multiplier, &canvas, &get_next_color(color));
     }
 }
@@ -104,9 +86,3 @@ pub fn get_next_color(color: &str) -> String {
 pub fn get_canvas_height_up(canvas: &HtmlCanvasElement, percent: f32) -> f32 {
     canvas.height() as f32 * percent
 }
-
-// #[wasm_bindgen]
-// pub fn download_canvas(canvas: HtmlCanvasElement) {
-//     // This is complex
-
-// }

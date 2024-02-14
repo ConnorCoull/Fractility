@@ -1,7 +1,12 @@
 <template>
     <div class="container">
         <div class="controls-container">
-            <h1 class="no-bottom-margin">Options</h1>
+            <div class="header-container">
+                <router-link to="/rust">
+                    <img class="logo-image" src="JavaScript_Logo_128.png" alt="Picture of the Rust Logo"/>
+                </router-link>
+                <h1 class="no-bottom-margin">Options</h1>
+            </div>
             <ControlsContainer name="Iterations" :value="iterations" :min="0" :max="15" @updateValue="updateEmittedValue" />
             <ControlsContainer name="Angle 1" :value="angle_1" :min="0" :max="360" @updateValue="updateEmittedValue" />
             <ControlsContainer name="Angle 2" :value="angle_2" :min="0" :max="360" @updateValue="updateEmittedValue" />
@@ -26,7 +31,7 @@ export default {
         return {
             angle_1: 0,
             angle_2: 120,
-            iterations: 5,
+            iterations: 3,
             branches: 3,
             length: 250,
             length_scalar: 0.5,
@@ -93,10 +98,10 @@ export default {
             this[name] = this.to_float(value); //doesn't update?
             this.clear(canvas);
             const startTime = performance.now();
-            this.draw_alternate_fractal(this.get_canvas_height_up(canvas, 0.5), 0, this.angle_1, this.angle_2, this.iterations, this.branches, this.length, this.length_scalar, this.width, this.width_scalar, canvas, this.start_color);
+            this.draw_alternate_fractal(this.get_canvas_height_up(canvas, 0.4), 0, this.angle_1, this.angle_2, this.iterations, this.branches, this.length, this.length_scalar, this.width, this.width_scalar, canvas, this.start_color);
             const endTime = performance.now();
             const elapsedTime = endTime - startTime;
-            console.log(`Fractal rendered in ${elapsedTime} ms`);
+            console.log(`[JavaSript] Fractal with iterations of ${this.iterations} rendered in ${elapsedTime} ms`);
         },
         to_lower_case(string) {
             return string.toLowerCase().replace(/ /g, "_");
@@ -131,18 +136,18 @@ export default {
         context.translate(canvas.width / 2, canvas.height);
         context.rotate(-Math.PI / 2);
 
-        console.log(this.start_color);
-
-        this.draw_alternate_fractal(this.get_canvas_height_up(canvas, 0.3), 0, this.angle_1, this.angle_2, this.iterations, this.branches, this.length, this.length_scalar, this.width, this.width_scalar, canvas, this.start_color);
+        this.draw_alternate_fractal(this.get_canvas_height_up(canvas, 0.4), 0, this.angle_1, this.angle_2, this.iterations, this.branches, this.length, this.length_scalar, this.width, this.width_scalar, canvas, this.start_color);
     },
 };
 </script>
+
 <style scoped>
     .h1 {
         color: #ffd700;
     }
 
     .no-bottom-margin {
+        flex: 70%;
         margin-bottom: 0;
     }
 
@@ -156,6 +161,14 @@ export default {
         margin: 0;
         padding: 0;
     }
+
+    .logo-image {
+        padding-left: 16px;
+        padding-top: 16px;
+        height: 64px;
+        width: 64px;
+    }
+
     .container {
         display: flex;
         flex-direction: row;
@@ -172,6 +185,11 @@ export default {
         color: #f4f4f4;
         background: #333333;
         flex: 20%;
+    }
+
+    .header-container {
+        display: flex;
+        align-items: center;
     }
 
     .controls-container h1 {

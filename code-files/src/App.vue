@@ -1,8 +1,8 @@
 <template>
-  <FractalComponent />
+  <router-view></router-view>
 </template>
 
-<script>
+<!-- <script>
 import FractalComponent from './components/FractalComponent.vue'
 
 export default {
@@ -11,7 +11,7 @@ export default {
     FractalComponent,
   }
 }
-</script>
+</script> -->
 
 <style>
 body {

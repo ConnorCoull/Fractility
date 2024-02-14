@@ -1,7 +1,12 @@
 <template>
     <div class="container">
         <div class="controls-container">
-            <h1 class="no-bottom-margin">Options</h1>
+            <div class="header-container">
+                <router-link to="/javascript">
+                    <img class="logo-image" src="Rust_Logo_128.png" alt="Picture of the Rust Logo"/>
+                </router-link>
+                <h1 class="no-bottom-margin">Options</h1>
+            </div>
             <ControlsContainer name="Iterations" :value="iterations" :min="0" :max="15" @updateValue="updateEmittedValue" />
             <ControlsContainer name="Angle 1" :value="angle_1" :min="0" :max="360" @updateValue="updateEmittedValue" />
             <ControlsContainer name="Angle 2" :value="angle_2" :min="0" :max="360" @updateValue="updateEmittedValue" />
@@ -11,7 +16,6 @@
             <ControlsContainer name="Width" :value="width" :min="0" :max="100" @updateValue="updateEmittedValue" />
             <ControlsContainer name="Width Scalar" :value="width_scalar" :min="0" :max="2" :step="0.01" @updateValue="updateEmittedValue" />
             <button class="download-button" @click="downloadCanvas">Download</button>
-            <!-- <WebGPUCheck /> -->
         </div>
         <div class="canvas-container">
             <canvas ref="canvas"></canvas>
@@ -28,7 +32,7 @@ export default {
         return {
             angle_1: 0,
             angle_2: 120,
-            iterations: 5,
+            iterations: 3,
             branches: 3,
             length: 250,
             length_scalar: 0.5,
@@ -44,7 +48,7 @@ export default {
             const startTime = performance.now();
 
             draw_alternate_fractal(
-                get_canvas_height_up(canvas, 0.5),
+                get_canvas_height_up(canvas, 0.4),
                 0,
                 this.angle_1,
                 this.angle_2,
@@ -60,7 +64,7 @@ export default {
 
             const endTime = performance.now();
             const elapsedTime = endTime - startTime;
-            console.log(`Fractal rendered in ${elapsedTime} ms`);
+            console.log(`[Rust + WASM] Fractal with iterations of ${this.iterations} rendered in ${elapsedTime} ms`);
         },
         update(element, value) {
             element.innerHTML = value;
@@ -100,6 +104,7 @@ export default {
     }
 
     .no-bottom-margin {
+        flex: 70%;
         margin-bottom: 0;
     }
 
@@ -113,6 +118,14 @@ export default {
         margin: 0;
         padding: 0;
     }
+
+    .logo-image {
+        padding-left: 16px;
+        padding-top: 16px;
+        height: 64px;
+        width: 64px;
+    }
+
     .container {
         display: flex;
         flex-direction: row;
@@ -130,6 +143,11 @@ export default {
         background: #333333;
         flex: 20%;
         padding-bottom: 2vh;
+    }
+
+    .header-container {
+        display: flex;
+        align-items: center;
     }
 
     .controls-container h1 {

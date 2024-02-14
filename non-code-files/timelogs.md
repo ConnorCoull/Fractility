@@ -210,3 +210,124 @@
 
 ### 29 Nov 2023
 
+### 30 Nov 2023
+
+### 1 Dec 2023
+
+## Week 11
+
+### 4 Dec 2023
+
+### 5 Dec 2023
+
+### 6 Dec 2023
+
+### 7 Dec 2023
+
+### 8 Dec 2023
+
+## Week 12
+
+### 11 Dec 2023
+
+### 12 Dec 2023
+
+### 13 Dec 2023
+
+### 14 Dec 2023
+
+### 15 Dec 2023
+
+## Week 13
+
+### 1 Jan 2024
+* *3 hours* Component refactoring, slider component
+
+### 2 Jan 2024
+* *2 hours* Bugfixing slider component
+
+### 3 Jan 2024
+* *1 hour* Reading about L-Systems
+* *0.5 hours* bugfixing slider component
+
+### 4 Jan 2024
+
+### 5 Jan 2024
+
+## Week 12
+
+### 8 Jan 2024
+
+### 9 Jan 2024
+
+### 10 Jan 2024
+
+### 11 Jan 2024
+
+### 12 Jan 2024
+
+## Week 13
+
+### 15 Jan 2024
+
+### 16 Jan 2024
+
+### 17 Jan 2024
+
+### 18 Jan 2024
+
+### 19 Jan 2024
+
+## Week 14
+
+### 22 Jan 2024
+
+### 23 Jan 2024
+* *2 hours* CSS Updates
+
+### 24 Jan 2024
+* *2 hours* CSS Updates
+* *1 hours* Adding font/refactoring
+* *4 hours* Adding colour graded fractals
+
+### 25 Jan 2024
+* *3.5 hours* Adding new fractal component
+
+### 26 Jan 2024
+* *2 hours* Adding new fractal component
+
+## Week 15
+
+### 29 Jan 2024
+* *1 hour* preparing for meeting
+* *1 hour* refactoring, mostly frontend JS
+* *0.5 hours* Meeting
+
+### 30 Jan 2024
+
+### 31 Jan 2024
+* *2 hours* Created JavaScript version of fractal component.
+* *2 hours* Bugfixing JavaScript version
+
+### 01 Feb 2024
+* *2 hours* Bugfixing the fractal color issue
+
+### 02 Feb 2024
+
+### Week 16
+
+### 05 Feb 2024
+* *1 hour* More bugfixing
+
+### 06 Feb 2024
+* *1 hour* More bugfixing, solved the bug
+* *0.5 hours* Small refactoring
+* *0.5 hours* researching how to save a canvas as png
+* *0.5 hours* implementing save feature
+
+### 07 Feb 2024
+* *1 hour* Research on threads in Rust + JavaScript
+* *2 hours* trying (and failing) to properly implement routes
+* *0.5 hours* Initial Evaluation
+* *1.5 hours* Attempting to make code more efficient
+

@@ -11,3 +11,16 @@ the switch to 0-2 but still being divided by 100 and starting at 50 caused the b
 Bug 🐛 - the coords system isn't like what i need
 
 Bug 🐛- Reloading when dev console is open changes the scaling (make responsive!!)
+Solution - resizing the window causes the canvas to be redrawn, which causes the scaling to be reset. Same for phones.
+Not a part of the specifcation, but it would be nice to have it be responsive.
+
+Bug 🐛 - There is a margin that won't go away, despite all padding and margins set to 0
+
+
+Bug 🐛 - The scalings don't work, but the other settings do
+Solution - scalars had an "x_scalar" name, but were being called as "x scalar"
+
+Bug 🐛 - Maximum Call Stack Size Exceeded
+Solution - Once again there was an issue in the Rust code at runtime, which caused that error due to bad code.
+
+
