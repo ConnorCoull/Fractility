@@ -142,7 +142,6 @@ export default {
         color: #f4f4f4;
         background: #333333;
         flex: 20%;
-        padding-bottom: 2vh;
     }
 
     .header-container {
