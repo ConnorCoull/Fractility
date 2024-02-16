@@ -21,8 +21,10 @@ jobs:
       - name: build files
         run: |
           cd code-files
-          ls
-          ./build
+          chmod +x ./build.sh
+          ./build.sh
+        shell:
+          bash
 
       - name: Deploy
         run: |
