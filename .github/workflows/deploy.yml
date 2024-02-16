@@ -26,10 +26,13 @@ jobs:
         shell:
           bash
 
-      - name: Deploy
-        run: |
-          cd code-files
-          npm install -g @azure/static-web-apps-cli
-          cd dist
-          swa deploy --deployment-token ${{ secrets.AZURE_STATIC_WEBAPP_TOKEN }}
+      - name: Azure Static Web Apps Deploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          skip_app_build: true
+          app_location: code-files/dist
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEBAPP_TOKEN }}
+          action: "upload"
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+            
 
