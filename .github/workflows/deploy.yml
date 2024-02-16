@@ -21,6 +21,7 @@ jobs:
       - name: build files
         run: |
           cd code-files
+          ls
           ./build
 
       - name: Deploy
