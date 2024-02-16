@@ -29,7 +29,7 @@ jobs:
       - name: Deploy
         run: |
           cd code-files
-          npm install -D @azure/static-web-apps-cli
+          npm install -g @azure/static-web-apps-cli
           cd dist
           swa deploy --deployment-token {{ $secrets.AZURE_STATIC_WEBAPP_TOKEN }}
 
