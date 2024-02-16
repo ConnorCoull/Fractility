@@ -1,5 +1,7 @@
 #!/bin/bash
 cd ./rust-backend/
+npm install -D wasm-pack
+npm install
 wasm-pack build --target web
 cd ..
 rm -rf public/pkg
