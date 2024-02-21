@@ -18,6 +18,9 @@
             <button class="download-button" @click="downloadCanvas">Download</button>
         </div>
         <div class="canvas-container">
+            <div class="timer-container">
+                <p>{{ render_time }}ms</p>
+            </div>
             <canvas ref="canvas"></canvas>
         </div>
     </div>
@@ -38,6 +41,7 @@ export default {
             width: 4.5,
             width_scalar: 0.75,
             start_color: "#DE493E",
+            render_time: 0,
         };
     },
     methods: {
@@ -101,7 +105,7 @@ export default {
             this.draw_alternate_fractal(this.get_canvas_height_up(canvas, 0.4), 0, this.angle_1, this.angle_2, this.iterations, this.branches, this.length, this.length_scalar, this.width, this.width_scalar, canvas, this.start_color);
             const endTime = performance.now();
             const elapsedTime = endTime - startTime;
-            console.log(`[JavaSript] Fractal with iterations of ${this.iterations} rendered in ${elapsedTime.toFixed(2)} ms`);
+            this.render_time = elapsedTime.toFixed(2);
         },
         to_lower_case(string) {
             return string.toLowerCase().replace(/ /g, "_");
@@ -190,6 +194,13 @@ export default {
     .header-container {
         display: flex;
         align-items: center;
+    }
+
+    .timer-container {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 100;
     }
 
     .controls-container h1 {
