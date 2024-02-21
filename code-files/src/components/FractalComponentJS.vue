@@ -101,7 +101,7 @@ export default {
             this.draw_alternate_fractal(this.get_canvas_height_up(canvas, 0.4), 0, this.angle_1, this.angle_2, this.iterations, this.branches, this.length, this.length_scalar, this.width, this.width_scalar, canvas, this.start_color);
             const endTime = performance.now();
             const elapsedTime = endTime - startTime;
-            console.log(`[JavaSript] Fractal with iterations of ${this.iterations} rendered in ${elapsedTime} ms`);
+            console.log(`[JavaSript] Fractal with iterations of ${this.iterations} rendered in ${elapsedTime.toFixed(2)} ms`);
         },
         to_lower_case(string) {
             return string.toLowerCase().replace(/ /g, "_");

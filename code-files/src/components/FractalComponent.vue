@@ -64,7 +64,7 @@ export default {
 
             const endTime = performance.now();
             const elapsedTime = endTime - startTime;
-            console.log(`[Rust + WASM] Fractal with iterations of ${this.iterations} rendered in ${elapsedTime} ms`);
+            console.log(`[Rust + WASM] Fractal with iterations of ${this.iterations} rendered in ${elapsedTime.toFixed(2)} ms`);
         },
         update(element, value) {
             element.innerHTML = value;
