@@ -18,6 +18,9 @@
             <button class="download-button" @click="downloadCanvas">Download</button>
         </div>
         <div class="canvas-container">
+            <div class="timer-container">
+                <p>{{ render_time }}ms</p>
+            </div>
             <canvas ref="canvas"></canvas>
         </div>
     </div>
@@ -59,12 +62,13 @@ export default {
                 this.width,
                 this.width_scalar,
                 canvas,
-                this.start_color
+                this.start_color,
+                this.render_time
             );
 
             const endTime = performance.now();
             const elapsedTime = endTime - startTime;
-            console.log(`[Rust + WASM] Fractal with iterations of ${this.iterations} rendered in ${elapsedTime.toFixed(2)} ms`);
+            this.render_time = elapsedTime.toFixed(2);
         },
         update(element, value) {
             element.innerHTML = value;
@@ -147,6 +151,13 @@ export default {
     .header-container {
         display: flex;
         align-items: center;
+    }
+
+    .timer-container {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 100;
     }
 
     .controls-container h1 {
