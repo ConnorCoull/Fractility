@@ -13,7 +13,7 @@
             <ControlsContainer name="Branches" :value="branches" :min="0" :max="10" @updateValue="updateEmittedValue" />
             <ControlsContainer name="Length" :value="length" :min="0" :max="1000" :step="0.1" @updateValue="updateEmittedValue" />
             <ControlsContainer name="Length Scalar" :value="length_scalar" :min="0" :max="2" :step="0.01" @updateValue="updateEmittedValue" />
-            <ControlsContainer name="Width" :value="width" :min="0" :max="1002" :step="0.1" @updateValue="updateEmittedValue" />
+            <ControlsContainer name="Width" :value="width" :min="0" :max="100" :step="0.1" @updateValue="updateEmittedValue" />
             <ControlsContainer name="Width Scalar" :value="width_scalar" :min="0" :max="2" :step="0.01" @updateValue="updateEmittedValue" />
             <button class="download-button" @click="downloadCanvas">Download</button>
         </div>

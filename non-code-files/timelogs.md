@@ -352,10 +352,15 @@
 ### 19 Feb 2024
 
 ### 20 Feb 2024
+* *
 
 ### 21 Feb 2024
+* *1 hour* dissertation
 
 ### 22 Feb 2024
+* *1 hour* Edits to forms, inc pre-evaluation and re-edits
+* *1 hour* Various bugfixes
+* *4 hours* dissertation
 
 ### 23 Feb 2024
 
