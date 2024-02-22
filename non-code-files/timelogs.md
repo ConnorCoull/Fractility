@@ -314,7 +314,7 @@
 
 ### 02 Feb 2024
 
-### Week 16
+## Week 16
 
 ### 05 Feb 2024
 * *1 hour* More bugfixing
@@ -330,4 +330,32 @@
 * *2 hours* trying (and failing) to properly implement routes
 * *0.5 hours* Initial Evaluation
 * *1.5 hours* Attempting to make code more efficient
+
+### 08 Feb 2024
+
+### 09 Feb 2024
+
+## Week 17
+
+### 12 Feb 2024
+
+### 13 Feb 2024
+
+### 14 Feb 2024
+
+### 15 Feb 2024
+
+### 16 Feb 2024
+
+## Week 18
+
+### 19 Feb 2024
+
+### 20 Feb 2024
+
+### 21 Feb 2024
+
+### 22 Feb 2024
+
+### 23 Feb 2024
 

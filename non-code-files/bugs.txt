@@ -23,4 +23,10 @@ Solution - scalars had an "x_scalar" name, but were being called as "x scalar"
 Bug 🐛 - Maximum Call Stack Size Exceeded
 Solution - Once again there was an issue in the Rust code at runtime, which caused that error due to bad code.
 
+Bug 🐛 - Width wasn't snapping to 0.1 values, only whole ints
+Solution - I didn't include a step in the component declaration
+
+Bug 🐛 - The canvas doesn't function normally on larger screens
+
+
 
