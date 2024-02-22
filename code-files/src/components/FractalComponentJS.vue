@@ -87,6 +87,7 @@ export default {
             let context = canvas.getContext('2d');
             let width = canvas.width;
             let height = canvas.height;
+            console.log(width, height);
 
             context.clearRect(0.0, 0.0, width, height);
             context.clearRect(0.0, 0.0, -width, -height);
@@ -136,6 +137,8 @@ export default {
 
         context.canvas.width = window.innerWidth * 0.8;
         context.canvas.height = window.innerHeight * 0.975; // this doesn't feel great but not sure what alternative look like
+
+        console.log(context.canvas.width, context.canvas.height);
 
         context.translate(canvas.width / 2, canvas.height);
         context.rotate(-Math.PI / 2);
