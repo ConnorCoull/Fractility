@@ -7,7 +7,7 @@
                 </router-link>
                 <h1 class="no-bottom-margin">Options</h1>
             </div>
-            <ControlsContainer name="Iterations" :value="iterations" :min="0" :max="15" @updateValue="updateEmittedValue" />
+            <ControlsContainer name="Iterations" :value="iterations" :min="0" :max="10" @updateValue="updateEmittedValue" />
             <ControlsContainer name="Angle 1" :value="angle_1" :min="0" :max="360" @updateValue="updateEmittedValue" />
             <ControlsContainer name="Angle 2" :value="angle_2" :min="0" :max="360" @updateValue="updateEmittedValue" />
             <ControlsContainer name="Branches" :value="branches" :min="0" :max="10" @updateValue="updateEmittedValue" />
