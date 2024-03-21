@@ -1,11 +1,11 @@
 <template>
   <div class="info-header-container">
     <div class="row">
-      <h3 class="var-title">{{ name }}</h3>
+      <label :for="'slider-' + name" class="var-title">{{ name }}</label>
       <p :id="name" class="var-content">{{ localValue }}</p>
     </div>
     <div class="input-container">
-      <input class="slider" type="range" v-model="localValue" :min="min" :max="max" :step="step" @input="updateValue" />
+      <input id="'slider-' + name" class="slider" type="range" v-model="localValue" :min="min" :max="max" :step="step" @input="updateValue" />
     </div>
   </div>
 </template>
@@ -60,6 +60,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
+  padding-bottom: 1vh;
 }
 
 /* change the slider input to be red instead of the default */

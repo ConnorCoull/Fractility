@@ -170,7 +170,7 @@ export default {
         color: #f4f4f4;
         border: none;
         padding: 10px 20px;
-        padding-bottom: 1vh;
+        padding-bottom: 1.5vh;
         font-size: 16px;
         cursor: pointer;
         margin-top: 20px;
