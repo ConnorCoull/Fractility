@@ -1,5 +1,5 @@
 cd .\rust-backend\
-wasm-pack build --target web -- release
+wasm-pack build --target web --release
 cd ..
 rmdir /S /Q public\pkg
 xcopy /E /I rust-backend\pkg public\pkg\
