@@ -330,6 +330,8 @@
 * *2 hours* trying (and failing) to properly implement routes
 * *0.5 hours* Initial Evaluation
 * *1.5 hours* Attempting to make code more efficient
+* *0.5 hours* Preparing for meeting
+* *0.5 hours* Meeting
 
 ### 08 Feb 2024
 
@@ -339,20 +341,38 @@
 
 ### 12 Feb 2024
 
+* *2 hours* Research on AWS
+* *1.5 hours* Research on Heroku, GitHub pages and others
+* *0.5 hours* Research on Azure
+* *1 hour* Attempting to make code more efficient
+
 ### 13 Feb 2024
+
+* *2 hours* Adjusting fractal function to test performance
+* *2 hours* Trying to make Router work
 
 ### 14 Feb 2024
 
+* *3 hours* Trying to make Router work
+* *0.5 hours* Preparing for meeting
+* *0.5 hours* Meeting
+
 ### 15 Feb 2024
 
+* *4 hours* Trying to host on Azure
+
 ### 16 Feb 2024
+* *4 hours* Trying to host on Azure
+* *1 hour* Modifying CI elements
 
 ## Week 18
 
 ### 19 Feb 2024
+* *2 hours* Creating evaluation sheet
+* *1 hour* Testing fractals, pilot study
 
 ### 20 Feb 2024
-* *
+* 
 
 ### 21 Feb 2024
 * *1 hour* dissertation
@@ -363,4 +383,78 @@
 * *4 hours* dissertation
 
 ### 23 Feb 2024
+
+## Week 19
+
+### 26 Feb 2024
+
+### 27 Feb 2024 
+* 8 hours* Dissertation - Introduction & Background
+
+### 28 Feb 2024
+* *4 hours* Dissertation - Background Research
+
+### 29 Feb 20204
+* *3 hours* Dissertation - Background
+
+### 01 Mar 2024
+* *3 hours* Dissertation - Background Research
+
+## Week 20
+
+### 04 Mar 2024
+* *2 hours* Dissertation - Background Research
+
+### 05 Mar 2024
+* *1 hour* Dissertation - Background
+* *1 hour* Dissertation - Design
+
+### 06 Mar 2024
+* *3 hours* Dissertation - Background
+* *0.5 hours* Meeting preparation
+* *0.5 hours* Meeting
+
+### 07 Mar 2024
+* *2 hours* Dissertation - Design 
+
+### 08 Mar 2024
+
+## Week 21
+
+### 11 Mar 2024
+* *1 hour* Dissertation - Implementation
+
+### 12 Mar 2024
+* *1 hour* Dissertation - Implementation
+
+### 13 Mar 2024
+* *1 hour* Dissertation - Design
+* *2 hour* Dissertation - Implementation
+
+### 14 Mar 2024
+* *0.5 hours* Meeting Preparation
+* *0.5 hours* Meeting 
+* *1 hour* Dissertation - Implementation
+
+### 15 Mar 2024
+
+## Week 22
+
+### 18 Mar 2024
+* *6 hours* - Dissertation Implementation
+* *1 hour* - Dissertation Evaluation
+
+### 19 Mar 2024
+* *8 hours* - Dissertation Implementation
+
+### 20 Mar 2024
+* *8 hours* - Dissertation Implementation & Evaluation
+
+### 21 Mar 2024
+* *10 hours* - Dissertation
+
+### 22 Mar 2024
+* *10 hours* - Dissertation
+
+
 
